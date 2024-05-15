@@ -1,0 +1,8 @@
+caso_practico/code/__pycache__
+caso_practico/data/other
+caso_practico/data/raw/tweets_by_class_2022_11_15
+caso_practico/data/raw/tweets_by_class_2022_11_19
+caso_practico/data/raw/tweets_by_class_2022_11_22
+caso_practico/data/processed
+caso_practico/logs/old
+caso_practico/nohup.out
