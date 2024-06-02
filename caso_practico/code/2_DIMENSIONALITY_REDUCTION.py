@@ -153,23 +153,42 @@ fig = (
     )
 )
 
-# fig = px.scatter(
-#     DF_tfidf_embedded,
-#     x = "x",
-#     y = "y",
-#     color = "CLUSTER_REAL",
-#     color_discrete_map = my_palette,
-#     opacity = 0.8,
-#     facet_col = "DR_model",
-#     # size = pd.Series([1]*DF_tfidf_embedded.shape[0])
-# )
-
-# fig.update_layout(
-#     title = "Tweets in embedded spaces by CLUSTER_REAL",
-#     legend = dict(x = 0, y = -0.1, orientation = "h")
-# )
-
 fig.write_html(os.path.join(FIGURES_PATH, "2_scatterplot.html"))
+
+fig_to_tfm = (
+    px.scatter(
+        DF_tfidf_embedded,
+        x = "x",
+        y = "y",
+        color = "CLUSTER_REAL",
+        category_orders = {'CLUSTER_REAL': [str(i).zfill(2) for i in range(1,n_clusters+1)]},
+        color_discrete_map = my_palette,
+        opacity = 0.8,
+        facet_col = "DR_model",
+        custom_data = ["LIST_2", "CLUSTER_REAL"] + [f"top_word_{i}" for i in range(1,6)]
+    )
+    .update_layout(
+        width = 1000,
+        height = 400,
+        margin = dict(t = 80, b = 80, l = 80, r = 80),
+        title = dict(text = "<b>Tweets in embedded spaces by CLUSTER_REAL</b>", x = 0.5, font = dict(size = 12)),
+        legend = dict(title_text = "", orientation = "h", yanchor = "bottom", xanchor = "center", x = 0.5, y = -0.3, font = dict(size = 10)),
+        xaxis = dict(title = dict(text = "PCA", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
+        xaxis2 = dict(title = dict(text = "TSNE", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
+        xaxis3 = dict(title = dict(text = "PCA_TSNE", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
+        yaxis = dict(title = dict(text = "", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
+        yaxis2 = dict(title = dict(text = "", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
+        yaxis3 = dict(title = dict(text = "", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
+
+    )
+    .for_each_annotation(lambda a: a.update(text=a.text.split("=")[1]))
+)
+
+for annotation in fig_to_tfm.layout.annotations:
+    annotation['text'] = ''
+
+fig_to_tfm.write_image(os.path.join(FIGURES_PATH, "2_scatterplot.png"))
+
 
 # SAVE RESULTS
 

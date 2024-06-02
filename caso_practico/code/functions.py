@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 import re
 import spacy
+import plotly.express as px
 
 from nltk.stem.snowball import SnowballStemmer
 
@@ -1083,17 +1084,21 @@ def get_confusion_matrix(dim_red_names, y_true, y_pred, vmin, vmax, w,
         DF_CM = DF_CM.loc[list(set(np.unique(y_true))),
                           list(set(np.unique(y_pred[i])))]
         
-        sns.heatmap(DF_CM,
-                    vmin = vmin,
-                    vmax = vmax,
-                    fmt = '3d',
-                    cmap = colormap,
-                    linewidth = .8,
-                    annot = True,
-                    annot_kws={"fontsize": 3},
-                    square = True,
-                    cbar = False,
-                    ax = axes[0][i])
+        # sns.heatmap(DF_CM,
+        #             vmin = vmin,
+        #             vmax = vmax,
+        #             fmt = '3d',
+        #             cmap = colormap,
+        #             linewidth = .8,
+        #             annot = True,
+        #             annot_kws={"fontsize": 3},
+        #             square = True,
+        #             cbar = False,
+        #             ax = axes[0][i])
+
+        px.imshow(
+            DF_CM
+        )
         
         axes[0][i].set_title(dim_red_names[i], fontsize = 5)
         
@@ -1112,21 +1117,21 @@ def get_confusion_matrix(dim_red_names, y_true, y_pred, vmin, vmax, w,
             
     axes[0][0].set_ylabel("Real cluster", fontsize = 5)        
             
-    mappable = axes[0][n_DR-1].get_children()[0]
-    cbar = plt.colorbar(mappable,
-                        ax = axes[1][:],
-                        orientation = 'horizontal',
-                        fraction = 0.1,
-                        aspect = 150*(w/6),
-                        location = 'top')
-    cbar.set_ticks([0,250,500,750,1000])
-    cbar.ax.tick_params(labelsize = 4,
-                        width=0.3,
-                        length = 1.7,
-                        rotation = 0)
-    cbar.ax.xaxis.set_ticks_position('bottom')
-    cbar.outline.set_linewidth(0.3)
-    cbar.set_label('Predicted cluster', fontsize = 5, labelpad = 10)
+    # mappable = axes[0][n_DR-1].get_children()[0]
+    # cbar = plt.colorbar(mappable,
+    #                     ax = axes[1][:],
+    #                     orientation = 'horizontal',
+    #                     fraction = 0.1,
+    #                     aspect = 150*(w/6),
+    #                     location = 'top')
+    # cbar.set_ticks([0,250,500,750,1000])
+    # cbar.ax.tick_params(labelsize = 4,
+    #                     width=0.3,
+    #                     length = 1.7,
+    #                     rotation = 0)
+    # cbar.ax.xaxis.set_ticks_position('bottom')
+    # cbar.outline.set_linewidth(0.3)
+    # cbar.set_label('Predicted cluster', fontsize = 5, labelpad = 10)
     
     axes[1][0].set_visible(False)
     axes[1][1].set_visible(False)

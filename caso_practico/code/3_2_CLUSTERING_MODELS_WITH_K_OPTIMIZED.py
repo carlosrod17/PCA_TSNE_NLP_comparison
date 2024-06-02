@@ -282,6 +282,51 @@ fig = (
 
 fig.write_html(os.path.join(FIGURES_PATH, "3_2_scatterplot.html"))
 
+fig_to_tfm = (
+    px.scatter(
+        DF_classification,
+        x = "x",
+        y = "y",
+        color = "CLUSTER",
+        category_orders = {'CLUSTER': [str(i).zfill(2) for i in range(1,len(DF_classification.CLUSTER.unique())+1)]},
+        color_discrete_map = my_palette,
+        opacity = 0.8,
+        facet_col = "CLUSTER_TYPE",
+        facet_row = "DR_model",
+        facet_row_spacing = 0.05
+    )
+    .update_layout(
+        title = {
+            "text": "<b>Real classifications vs. k-optimized classifications</b>",
+            "x": 0.5
+        },
+        legend = {
+            "y": 0.5
+        },
+        width = 26*37.795276,
+        height = 10*37.795276*len(DF_classification["DR_model"].unique())+1,
+        xaxis = dict(title = "Real", tickvals = [0, 0.5, 1], showticklabels=False),
+        xaxis2 = dict(title = "K-MEANS", tickvals = [0, 0.5, 1], showticklabels=False),
+        xaxis3 = dict(title = "Real", tickvals = [0, 0.5, 1], showticklabels=False),
+        xaxis4 = dict(title = "K-MEANS", tickvals = [0, 0.5, 1], showticklabels=False),
+        xaxis5 = dict(title = "Real", tickvals = [0, 0.5, 1], showticklabels=False),
+        xaxis6 = dict(title = "K-MEANS", tickvals = [0, 0.5, 1], showticklabels=False),
+        yaxis = dict(title = "PCA_TSNE", tickvals = [0, 0.5, 1], showticklabels=False),
+        yaxis2 = dict(title = "", tickvals = [0, 0.5, 1], showticklabels=False),
+        yaxis3 = dict(title = "TSNE", tickvals = [0, 0.5, 1], showticklabels=False),
+        yaxis4 = dict(title = "", tickvals = [0, 0.5, 1], showticklabels=False),
+        yaxis5 = dict(title = "PCA", tickvals = [0, 0.5, 1], showticklabels=False),
+        yaxis6 = dict(title = "", tickvals = [0, 0.5, 1], showticklabels=False),
+
+    )
+    .for_each_annotation(lambda a: a.update(text=a.text.split("=")[1]))
+)
+
+for annotation in fig_to_tfm.layout.annotations:
+    annotation['text'] = ''
+
+fig_to_tfm.write_image(os.path.join(FIGURES_PATH, "3_2_scatterplot.png"))
+
 """
 
 get_confusion_matrix(dim_red_names = [dim_red_names[i] for i in dim_red_models],

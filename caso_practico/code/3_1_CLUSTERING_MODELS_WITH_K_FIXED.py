@@ -31,6 +31,7 @@ from var_def import C_models_to_perform
 from var_def import C_models
 
 from var_def import my_palette
+from var_def import clustering_colors
 
 from functions import fit_predict_model
 from functions import get_optim_cluster
@@ -203,22 +204,51 @@ for dr_model in DR_models_to_perform:
 
 logging.info("Creating barplot chart of silhouette coeficients.")
 
-fig = px.bar(
-    DF_silhouette,
-    x = "DR_model",
-    y = "s_score",
-    color = "C_model",
-    barmode = "group"
-)
-
-fig.update_layout(
-    title = "Silhouette coefficients for K-fixed classifications",
-    xaxis_title = "Dimensionality Reduction model",
-    yaxis_title = "Silhouette coefficient",
-    yaxis_range = [0,1]
+fig = (
+    px.bar(
+        DF_silhouette,
+        x = "DR_model",
+        y = "s_score",
+        color = "C_model",
+        color_discrete_map = clustering_colors,
+        barmode = "group",
+        labels = {"C_model": "Clustering algorithm"}
+    ).update_layout(
+        title = {
+            "text": "<b>Silhouette coefficients for K-fixed classifications</b>",
+            "x": 0.5,
+        },
+        legend = {
+            "y": 0.5
+        },
+        xaxis_title = "Dimensionality Reduction model",
+        yaxis_title = "Silhouette coefficient",
+        yaxis_range = [0,1],
+    )
 )
 
 fig.write_html(os.path.join(FIGURES_PATH, "3_1_silhouette.html"))
+
+fig_to_plot = (
+    px.bar(
+        DF_silhouette,
+        x = "DR_model",
+        y = "s_score",
+        color = "C_model",
+        color_discrete_map = clustering_colors,
+        barmode = "group",
+    ).update_layout(
+        width = 800,
+        height = 600,
+        margin = dict(t = 50, b = 80, l = 80, r = 50),
+        title = dict(text = "<b>Silhouette coefficients for K-fixed classifications</b>", x = 0.5, font = dict(size = 12)),
+        legend = dict(title_text = "", orientation = "h", yanchor = "bottom", xanchor = "center", x = 0.495, y = -0.2, font = dict(size = 10)),
+        xaxis = dict(title = dict(text = "Dimensionality Reduction model", font = dict(size = 10)), tickfont = dict(size = 10)),
+        yaxis = dict(title = dict(text = "Silhouette coefficient", font = dict(size = 10)), tickfont = dict(size = 7), range = [0,1])
+    )
+)
+
+fig_to_plot.write_image(os.path.join(FIGURES_PATH, "3_1_silhouette.png"))
 
 # FIGURES
 
@@ -270,6 +300,48 @@ fig = (
 )
 
 fig.write_html(os.path.join(FIGURES_PATH, "3_1_scatterplot.html"))
+
+fig_to_tfm = (
+    px.scatter(
+        DF_classification,
+        x = "x",
+        y = "y",
+        color = "CLUSTER",
+        category_orders = {'CLUSTER': [str(i).zfill(2) for i in range(1,len(DF_classification.CLUSTER.unique())+1)]},
+        color_discrete_map = my_palette,
+        opacity = 0.8,
+        facet_col = "CLUSTER_TYPE",
+        facet_row = "DR_model",
+        facet_row_spacing = 0.05
+    )
+    .update_layout(
+        width = 1000,
+        height = 350*len(DF_classification["DR_model"].unique())+100,
+        margin = dict(t = 60, b = 60, l = 60, r = 90),
+        title = dict(text = "<b>Real classifications vs. k-fixed classifications</b>", x = 0.5, font = dict(size = 12)),
+        legend = dict(orientation = "v", yanchor = "middle", xanchor = "right", x = 1.08, y = 0.5, font = dict(size = 10)),
+        xaxis = dict(title = dict(text = "Real", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
+        xaxis2 = dict(title = dict(text = "K-MEANS", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
+        xaxis3 = dict(title = dict(text = "Real", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
+        xaxis4 = dict(title = dict(text = "K-MEANS", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
+        xaxis5 = dict(title = dict(text = "Real", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
+        xaxis6 = dict(title = dict(text = "K-MEANS", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
+        yaxis = dict(title = dict(text = "PCA_TSNE", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
+        yaxis2 = dict(title = dict(text = "", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
+        yaxis3 = dict(title = dict(text = "TSNE", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
+        yaxis4 = dict(title = dict(text = "", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
+        yaxis5 = dict(title = dict(text = "PCA", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
+        yaxis6 = dict(title = dict(text = "", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
+
+    )
+    .for_each_annotation(lambda a: a.update(text=a.text.split("=")[1]))
+)
+
+for annotation in fig_to_tfm.layout.annotations:
+    annotation['text'] = ''
+
+fig_to_tfm.write_image(os.path.join(FIGURES_PATH, "3_1_scatterplot.png"))
+
 
 """
 
