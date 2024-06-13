@@ -35,7 +35,7 @@ NLP_parameters = {
     "min_similarity": 0.85,
     "min_frequency": 3,
     "bigrams_min_count": 90,
-    "bigrams_threshold": 0.8,
+    "bigrams_threshold": 0.85,
     "bigrams_scoring": "npmi"
 }
 
@@ -62,7 +62,7 @@ DR_models = {
                 "init": "pca",
                 "perplexity": 40,
                 "early_exageration": 25.0,
-                "learning_rate": 400,
+                "learning_rate": 600,
                 "n_iter": 100000,
                 "n_iter_without_progress": 1000,
                 "n_jobs": -1,
@@ -77,7 +77,7 @@ DR_models = {
         "long_name": "Principal Component Analysis + t-distributed Stochastic Neighbor Embedding",
         "parameters": {
             "PCA": {
-                "n_components": 400,
+                "n_components": 500,
                 "svd_solver": "auto",
                 "seed": seed
             },
@@ -91,7 +91,7 @@ DR_models = {
                     "init": "pca",
                     "perplexity": 40,
                     "early_exageration": 25.0,
-                    "learning_rate": 400,
+                    "learning_rate": 600,
                     "n_iter": 100000,
                     "n_iter_without_progress": 1000,
                     "n_jobs": -1,

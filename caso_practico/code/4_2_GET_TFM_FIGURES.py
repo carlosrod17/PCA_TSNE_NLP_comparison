@@ -403,7 +403,7 @@ confusion32 = make_subplots(
     rows = 1,
     cols = len(y_pred),
     column_widths = width_ratios,
-    horizontal_spacing = 0.04
+    horizontal_spacing = 0.05
 )
 
 for i in range(len(y_pred)):
@@ -446,7 +446,7 @@ for i in range(len(y_pred)):
         )
 
 confusion32.update_layout(
-    width = 1000,
+    width = 1000/33*(4 + sum([len(np.unique(y_pred[i])) for i in range(len(y_pred))])),
     height = 450,
     margin = dict(t = 60, b = 60, l = 20, r = 20),
     title = dict(text = "<b>K-optimized classifications' Confusion Matrices</b>", x = 0.5, font = dict(size = 12)),
@@ -553,7 +553,7 @@ confusion33 = make_subplots(
     rows = 1,
     cols = len(y_pred),
     column_widths = width_ratios,
-    horizontal_spacing = 0.04
+    horizontal_spacing = 0.08
 )
 
 for i in range(len(y_pred)):
@@ -593,10 +593,10 @@ for i in range(len(y_pred)):
             trace,
             row = 1, 
             col = i+1
-        )
+        )    
 
 confusion33.update_layout(
-    width = 1000,
+    width = 1000/33*(4 + sum([len(np.unique(y_pred[i])) for i in range(len(y_pred))])),
     height = 450,
     margin = dict(t = 60, b = 60, l = 20, r = 20),
     title = dict(text = "<b>DBSCAN classifications' Confusion Matrices</b>", x = 0.5, font = dict(size = 12)),
