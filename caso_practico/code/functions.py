@@ -690,8 +690,8 @@ def fit_transform_model(data, model, params):
         for k in n_clusters_list:
         
             kmeans = KMeans(n_clusters = k,
-                            init = 'k-means++',
-                            n_init = 5,
+                            init = 'random',
+                            n_init = 50,
                             random_state = seed)
             
             kmeans.fit(MAT_PCA_aux)

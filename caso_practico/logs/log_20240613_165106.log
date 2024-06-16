@@ -1,0 +1,54 @@
+2024-06-13 16:51:15,020 INFO: ------------------------------------------------------------------------------------------------------------------------
+2024-06-13 16:51:15,022 INFO: Starting dimensionality reduction.
+2024-06-13 16:51:15,023 INFO: Loading tfidfs.
+2024-06-13 16:51:31,403 INFO: 010000 tfidfs have being loaded.
+2024-06-13 16:51:32,196 INFO: Performing PCA_TSNE model.
+2024-06-13 16:51:32,198 INFO:     Searching for optim value of components.
+2024-06-13 16:51:32,199 INFO:     Initializing PCA model with parameters:
+2024-06-13 16:51:32,200 INFO:        - n_components = 500
+2024-06-13 16:51:32,201 INFO:        - svd_solver = auto
+2024-06-13 16:51:32,202 INFO:        - seed = 1712
+2024-06-13 16:51:32,204 INFO:     Embedding data with PCA model.
+2024-06-13 16:53:24,409 INFO:     Data embedded succesfully.
+2024-06-13 16:53:24,410 INFO:     Computing cumulative variance ratios.
+2024-06-13 16:53:24,412 INFO:     Selecting as candidates those which have cumulative variance ratio between 0.04 and 0.1.
+2024-06-13 16:53:24,414 INFO:     Choosing optim value among [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25].
+2024-06-13 16:53:39,555 INFO:        + K-Means with 05 components gets 0.02473 of silhouette score.
+2024-06-13 16:53:56,886 INFO:        + K-Means with 06 components gets 0.02756 of silhouette score.
+2024-06-13 16:54:14,468 INFO:        + K-Means with 07 components gets 0.02886 of silhouette score.
+2024-06-13 16:54:36,644 INFO:        + K-Means with 08 components gets 0.02767 of silhouette score.
+2024-06-13 16:54:58,514 INFO:        + K-Means with 09 components gets 0.02195 of silhouette score.
+2024-06-13 16:55:22,015 INFO:        + K-Means with 10 components gets 0.02359 of silhouette score.
+2024-06-13 16:55:45,465 INFO:        + K-Means with 11 components gets 0.02020 of silhouette score.
+2024-06-13 16:56:09,801 INFO:        + K-Means with 12 components gets 0.02187 of silhouette score.
+2024-06-13 16:56:35,036 INFO:        + K-Means with 13 components gets 0.02280 of silhouette score.
+2024-06-13 16:56:59,412 INFO:        + K-Means with 14 components gets 0.02390 of silhouette score.
+2024-06-13 16:57:27,738 INFO:        + K-Means with 15 components gets 0.02458 of silhouette score.
+2024-06-13 16:57:56,268 INFO:        + K-Means with 16 components gets 0.02002 of silhouette score.
+2024-06-13 16:58:26,229 INFO:        + K-Means with 17 components gets 0.02189 of silhouette score.
+2024-06-13 16:58:56,206 INFO:        + K-Means with 18 components gets 0.02363 of silhouette score.
+2024-06-13 16:59:30,014 INFO:        + K-Means with 19 components gets 0.02631 of silhouette score.
+2024-06-13 17:00:02,248 INFO:        + K-Means with 20 components gets 0.02817 of silhouette score.
+2024-06-13 17:00:35,552 INFO:        + K-Means with 21 components gets 0.03084 of silhouette score.
+2024-06-13 17:01:05,916 INFO:        + K-Means with 22 components gets 0.02582 of silhouette score.
+2024-06-13 17:01:36,611 INFO:        + K-Means with 23 components gets 0.02533 of silhouette score.
+2024-06-13 17:02:07,460 INFO:        + K-Means with 24 components gets 0.02993 of silhouette score.
+2024-06-13 17:02:43,337 INFO:        + K-Means with 25 components gets 0.03054 of silhouette score.
+2024-06-13 17:02:43,338 INFO:     Optim value of PCA is 21.
+2024-06-13 17:02:43,340 INFO:     Building PCA model with parameters:
+2024-06-13 17:02:43,341 INFO:        - n_components = 21
+2024-06-13 17:02:43,341 INFO:        - svd_solver = auto
+2024-06-13 17:02:43,342 INFO:        - seed = 1712
+2024-06-13 17:02:43,343 INFO:     Embedding data with PCA model.
+2024-06-13 17:03:03,381 INFO:     Building TSNE (execution 0) model with parameters:
+2024-06-13 17:03:03,383 INFO:        - n_components = 2
+2024-06-13 17:03:03,385 INFO:        - init = pca
+2024-06-13 17:03:03,386 INFO:        - perplexity = 40
+2024-06-13 17:03:03,387 INFO:        - early_exageration = 25.0
+2024-06-13 17:03:03,389 INFO:        - learning_rate = 600
+2024-06-13 17:03:03,390 INFO:        - n_iter = 100000
+2024-06-13 17:03:03,391 INFO:        - n_iter_without_progress = 1000
+2024-06-13 17:03:03,393 INFO:        - n_jobs = -1
+2024-06-13 17:03:03,394 INFO:        - random_state = 1712
+2024-06-13 17:03:03,395 INFO:        - verbose = 0
+2024-06-13 17:03:03,398 INFO:     Embedding data with TSNE model.

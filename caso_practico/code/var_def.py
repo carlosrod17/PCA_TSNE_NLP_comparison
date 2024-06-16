@@ -40,6 +40,7 @@ NLP_parameters = {
 }
 
 DR_models_to_perform = ["PCA", "TSNE", "PCA_TSNE"]
+# DR_models_to_perform = ["PCA_TSNE"]
 
 DR_models = {
     "PCA": {
@@ -62,9 +63,9 @@ DR_models = {
                 "init": "pca",
                 "perplexity": 40,
                 "early_exageration": 25.0,
-                "learning_rate": 600,
+                "learning_rate": 500,
                 "n_iter": 100000,
-                "n_iter_without_progress": 1000,
+                "n_iter_without_progress": 500,
                 "n_jobs": -1,
                 "random_state": seed,
                 "verbose": 0
@@ -91,9 +92,9 @@ DR_models = {
                     "init": "pca",
                     "perplexity": 40,
                     "early_exageration": 25.0,
-                    "learning_rate": 600,
+                    "learning_rate": 500,
                     "n_iter": 100000,
-                    "n_iter_without_progress": 1000,
+                    "n_iter_without_progress": 500,
                     "n_jobs": -1,
                     "random_state": seed,
                     "verbose": 0
