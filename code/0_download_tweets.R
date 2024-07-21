@@ -1,19 +1,7 @@
-setwd("~/Universidad/MasterIngenieriaMatematicaUCM/ASIGNATURAS/TFM/REPOSITORIO")
-
-#install.packages("rtweet")
-#install.packages("ggplot2")
-#install.packages("dplyr")
-#install.packages("tidytext")
-#install.packages("igraph")
-#install.packages("ggraph")
+setwd("/opt/shared")
 
 library(rtweet)
 library(dplyr)
-#library(ggplot2)
-#library(tidytext)
-#library(igraph)
-#library(ggraph)
-
 
 topic1 <- c('Ucrania guerra', 'Ucrania Rusia', 'Putin guerra', 'Putin nuclear',
             'Ucrania invasi�n', 'sanciones Rusia', 'OTAN Rusia', 'Zelenski',
@@ -109,7 +97,7 @@ for (i in 1:length(topics)) {
   tweets <- tweets[,c(4)]
   tweets <- distinct(tweets)
   
-  path <- paste("caso_practico/data/processed/1_TWEETS_RAW_BY_CLUSTER/tweets_",as.character(i),".csv",sep="")
+  path <- paste("data/processed/1_TWEETS_RAW_BY_CLUSTER/tweets_",as.character(i),".csv",sep="")
   
   write.csv2(tweets,file=path) 
   
