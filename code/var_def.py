@@ -3,7 +3,7 @@ import pandas as pd
 
 # PATHS
 
-TFM_PATH = "/opt/shared/caso_practico"
+TFM_PATH = "/opt/shared"
 DIRECTORY_PATH = os.path.join(TFM_PATH, "code")
 AUXILIAR_DATA_PATH = os.path.join(TFM_PATH, "data", "auxiliar")
 FIGURES_PATH = os.path.join(TFM_PATH, "data", "figures")
