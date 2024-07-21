@@ -4,7 +4,10 @@ Este repositorio forma parte de un TFM del Máster de Ingeniería Matemática po
 
 El trabajo plantea un experimento de comparación de eficacia de dos técnicas de reducción de dimensionalidad: PCA y t-SNE. Este experimento se ha realizado sobre un corpus de *tweets* (textos cortos de la red social X, antes Twitter) procesados con técnicas de NLP. 
 
-En el repositorio se almacenan los datos, los códigos que implementan el procesado de los textos, la reducción de dimensionalidad y la evaluación de los modelos y los resultados de dichos modelos.
+En el repositorio se almacenan:
+- Datos: los datos en crudo descargados de la API de Twitter, resultados intermedios, resultados finales y gráficas explicativas.
+- Códigos: código que procesa y estructura el corpus, código que aplica los modelos de reducción de dimensionalidad, códigos que evalúan los modelos y códigos que extraen las gráficas.
+- Logs: los registros que informan del estado de las ejecuciones.
 
 ## Tabla de Contenidos
 - [Instalación](#instalación)
