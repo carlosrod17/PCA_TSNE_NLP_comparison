@@ -56,6 +56,8 @@ La carpeta 📁`data` tiene el siguiente contenido:
           📁 3_TWEETS_EMBEDDED                      # Contiene el corpus proyectado
           📁 4_RESULTS                              # Contiene los resultados
 
+Las carpetas dentro de 📁`data/processed` contienen sus respectivos 📄`README.md` detallando el contenido y el *Schema* de los datos.
+
 
 ## 📦 Instalación
 
