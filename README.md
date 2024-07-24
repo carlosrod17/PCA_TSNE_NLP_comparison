@@ -2,12 +2,12 @@
 
 Este repositorio forma parte de un TFM del Máster de Ingeniería Matemática por la UCM. El archivo 📘`TFM_CarlosRodrigoPascual.pdf` contiene la memoria que se presentó como resultado final del proyecto. El archivo 📕`TFM_CarlosRodrigoPascual_presentacion.pdf` contiene el soporte audiovisual utilizado durante la defensa.
 
-El trabajo plantea un experimento de comparación de eficacia de dos técnicas de reducción de dimensionalidad: PCA y t-SNE. Este experimento se ha realizado sobre un corpus de *tweets* (textos cortos de la red social X, antes Twitter) procesados con técnicas de NLP. 
+El trabajo plantea un experimento de comparación de eficacia de dos técnicas de reducción de dimensionalidad: PCA y t-SNE. Este experimento se ha realizado sobre un corpus de *tweets* (textos cortos de la red social X, antes Twitter) procesados con técnicas de NLP. Para ello se ha utilizado un código de R para realizar la descarga de datos de la API de *Twitter* y varios códigos de Python con librerías como Spacy, NLTK, Sklearn, Plotly para procesar los datos, aplicarles los modelos, clasificar los datos, evaluar los modelos y graficar los resultados.
 
 En este archivo se da una pequeña introducción del contenido del repositorio. Los 📋contenidos son los siguientes:
-- [🧩 Estructura](#estructura)
-- [📦 Instalación](#instalación)
-- [🚀 Uso](#uso)
+- [🧩 Estructura](#-estructura)
+- [📦 Instalación](#-instalación)
+- [🚀 Uso](#-uso)
 
 ## 🧩 Estructura
 
@@ -88,7 +88,7 @@ Las carpetas dentro de 📁`data/processed` contienen sus respectivos 📄`READM
 
 ## 🚀 Uso
 
-1. Encender el contenedor de docker :
+1. Encender el contenedor de 🐋Docker:
     ```sh
     docker start PCA_TSNE_container
     ```
@@ -98,4 +98,8 @@ Las carpetas dentro de 📁`data/processed` contienen sus respectivos 📄`READM
     ⚠️ **Los códigos deben ejecutarse en el orden presentado**
 
 4. Monitorizar la ejecución con el archivo .log generado en la carpeta 📁`logs`.
-5. Revisar los ficheros generados en cada proceso (📁`data/processed`).        
+5. Revisar los ficheros generados en cada proceso (📁`data/processed`).
+6. Al acabar, apagar el contenedor de 🐋Docker:
+    ```sh
+    docker stop PCA_TSNE_container
+    ```
