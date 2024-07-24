@@ -4,7 +4,7 @@ Este repositorio forma parte de un TFM del Máster de Ingeniería Matemática po
 
 El trabajo plantea un experimento de comparación de eficacia de dos técnicas de reducción de dimensionalidad: PCA y t-SNE. Este experimento se ha realizado sobre un corpus de *tweets* (textos cortos de la red social X, antes Twitter) procesados con técnicas de NLP. 
 
-## 📋 Tabla de Contenidos
+En este archivo se da una pequeña introducción del contenido del repositorio. Los 📋contenidos son los siguientes:
 - [🧩 Estructura](#estructura)
 - [📦 Instalación](#instalación)
 - [🚀 Uso](#uso)
@@ -14,11 +14,9 @@ El trabajo plantea un experimento de comparación de eficacia de dos técnicas d
 Este repositorio tiene la siguiente estructura:
 
     📁 PCA_TSNE_NLP_comparison
-
        📁 code                                                  # Contiene los códigos R y python y la configuración
        📁 data                                                  # Contiene todos los datos,resultados y gráficas
        📁 logs                                                  # Contiene los registros de las ejecuciones
-
        🐙 .gitignore                                            # Lista de los ficheros que no requieren control de versiones
        🚀 executions.sh                                         # Orquestador de las ejecuciones
        📄 README.md                                             # Este archivo
@@ -80,7 +78,7 @@ Las carpetas dentro de 📁`data/processed` contienen sus respectivos 📄`READM
 
 5. Crea un contenedor de 🐋Docker:
     ```sh
-    docker run --name TFM_repo -v PCA_TSNE_NLP_comparison:/opt/shared -p 8890:0001 -it python:3.11.8
+    docker run --name PCA_TSNE_container -v PCA_TSNE_NLP_comparison:/opt/shared -p 8890:0001 -it python:3.11.8
     ```
 
 6. Instala las dependencias:
@@ -90,10 +88,14 @@ Las carpetas dentro de 📁`data/processed` contienen sus respectivos 📄`READM
 
 ## 🚀 Uso
 
-1. Modificar el fichero 📄`code/var_def.py` para configurar la ejecución.
-2. Modificar el orquestador 🚀`executions.sh` para escoger los códigos a ejecutar. 
+1. Encender el contenedor de docker :
+    ```sh
+    docker start PCA_TSNE_container
+    ```
+2. Modificar el fichero 📄`code/var_def.py` para configurar la ejecución.
+3. Modificar el orquestador 🚀`executions.sh` para escoger los códigos a ejecutar. 
 
     ⚠️ **Los códigos deben ejecutarse en el orden presentado**
 
-3. Monitorizar la ejecución con el archivo .log generado en la carpeta 📁`logs`.
-4. Revisar los ficheros generados en cada proceso (📁`data/processed`).        
+4. Monitorizar la ejecución con el archivo .log generado en la carpeta 📁`logs`.
+5. Revisar los ficheros generados en cada proceso (📁`data/processed`).        
