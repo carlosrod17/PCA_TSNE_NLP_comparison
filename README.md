@@ -1,6 +1,6 @@
 # Un estudio comparativo de PCA y t-SNE en textos procesados con NLP
 
-Este repositorio forma parte de un TFM del Máster de Ingeniería Matemática por la UCM. El archivo 📘`TFM_CarlosRodrigoPascual.pdf` contiene la memoria que se presentó como resultado final del proyecto. El archivo 📕`TFM_CarlosRodrigoPascual_presentacion.pdf` contiene el soporte audiovisual utilizado durante la defensa.
+Este repositorio forma parte de un Trabajo de Fin de Máster del Máster de Ingeniería Matemática por la UCM. El archivo 📘`TFM_CarlosRodrigoPascual.pdf` contiene la memoria que se presentó como resultado final del proyecto. El archivo 📕`TFM_CarlosRodrigoPascual_presentacion.pdf` contiene el soporte audiovisual utilizado durante la defensa.
 
 El trabajo plantea un experimento de comparación de eficacia de dos técnicas de reducción de dimensionalidad: PCA y t-SNE. Este experimento se ha realizado sobre un corpus de *tweets* (textos cortos de la red social X, antes Twitter) procesados con técnicas de NLP. Para ello se ha utilizado un código de R para realizar la descarga de datos de la API de *Twitter* y varios códigos de Python con librerías como Spacy, NLTK, Sklearn, Plotly para procesar los datos, aplicarles los modelos, clasificar los datos, evaluar los modelos y graficar los resultados.
 
@@ -14,7 +14,7 @@ En este archivo se da una pequeña introducción del contenido del repositorio. 
 Este repositorio tiene la siguiente estructura:
 
     📁 PCA_TSNE_NLP_comparison
-       📁 code                                                  # Contiene los códigos R y python y la configuración
+       📁 code                                                  # Contiene los códigos R y Python y la configuración
        📁 data                                                  # Contiene todos los datos,resultados y gráficas
        📁 logs                                                  # Contiene los registros de las ejecuciones
        🐙 .gitignore                                            # Lista de los ficheros que no requieren control de versiones
@@ -95,7 +95,7 @@ Las carpetas dentro de 📁`data/processed` contienen sus respectivos 📄`READM
 2. Modificar el fichero 📄`code/var_def.py` para configurar la ejecución.
 3. Modificar el orquestador 🚀`executions.sh` para escoger los códigos a ejecutar. 
 
-    ⚠️ **Los códigos deben ejecutarse en el orden presentado**
+    ⚠️ LOS CÓDIGOS DEBEN EJECUTARSE EN EL ORDEN PRESENTADO
 
 4. Monitorizar la ejecución con el archivo .log generado en la carpeta 📁`logs`.
 5. Revisar los ficheros generados en cada proceso (📁`data/processed`).
