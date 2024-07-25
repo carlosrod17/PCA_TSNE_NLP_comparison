@@ -5,8 +5,6 @@
 import os
 import sys
 import logging
-import datetime
-import pytz
 import numpy as np
 import pandas as pd
 import plotly.express as px  
@@ -21,14 +19,11 @@ from var_def import BBDD_PATH_2
 from var_def import BBDD_PATH_3
 from var_def import BBDD_PATH_4
 from var_def import FIGURES_PATH
-
 from var_def import delimiter
-
 from var_def import DR_models_to_perform
-
 from var_def import my_palette
 
-from functions import get_optim_cluster
+from utils.clustering import get_optim_cluster
 
 logging.basicConfig(
     filename = os.path.join(TFM_PATH, sys.argv[1]),

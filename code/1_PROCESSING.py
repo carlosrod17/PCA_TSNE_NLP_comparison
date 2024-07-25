@@ -5,8 +5,6 @@
 import os
 import sys
 import logging
-import datetime
-import pytz
 import pandas as pd
 
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -16,23 +14,13 @@ from var_def import TFM_PATH
 from var_def import BBDD_PATH_1
 from var_def import BBDD_PATH_2
 from var_def import delimiter
-
 from var_def import n_clusters
-
 from var_def import NLP_parameters
-
 from var_def import vmax
 from var_def import vmin
 from var_def import seed
 
-from functions import NLP
-
-# formatter = logging.Formatter('%(asctime)s - %(levelname)s - %(message)s')
-# file_handler = logging.FileHandler(os.path.join(TFM_PATH, sys.argv[1]), encoding='cp1252')
-# file_handler.setFormatter(formatter)
-# root_logger = logging.getLogger()
-# root_logger.addHandler(file_handler)
-# root_logger.setLevel(logging.INFO)
+from utils.natural_language_processing import NLP
 
 logging.basicConfig(
     filename = os.path.join(TFM_PATH, sys.argv[1]),

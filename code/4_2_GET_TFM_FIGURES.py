@@ -1,12 +1,6 @@
 import os
-import sys
-import logging
-import datetime
-import pytz
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
-import seaborn as sns
 import plotly.express as px
 
 from plotly.subplots import make_subplots
@@ -16,14 +10,10 @@ from sklearn.metrics import confusion_matrix
 from var_def import BBDD_PATH_3
 from var_def import BBDD_PATH_4
 from var_def import TFM_FIGURES_PATH
-
 from var_def import delimiter
 from var_def import n_clusters
-
 from var_def import my_palette
 from var_def import clustering_colors
-
-from functions import get_confusion_matrix
 
 #####
 
