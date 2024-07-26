@@ -4,8 +4,9 @@ Este repositorio forma parte de un Trabajo de Fin de Máster del Máster de Inge
 
 El trabajo plantea un experimento de comparación de eficacia de dos técnicas de reducción de dimensionalidad: PCA y t-SNE. Este experimento se ha realizado sobre un corpus de *tweets* (textos cortos de la red social X, antes Twitter) procesados con técnicas de NLP. Para ello se ha utilizado un código de R para realizar la descarga de datos de la API de *Twitter* y varios códigos de Python con librerías como Spacy, NLTK, Sklearn, Plotly para procesar los datos, aplicarles los modelos, clasificar los datos, evaluar los modelos y graficar los resultados.
 
-En este archivo se da una pequeña introducción del contenido del repositorio. Los 📋contenidos son los siguientes:
+En este archivo se da una pequeña introducción del contenido del repositorio. Los contenidos son los siguientes:
 - [🧩 Estructura](#-estructura)
+- [📋 Requititos](#-requisitos)
 - [📦 Instalación](#-instalación)
 - [🚀 Uso](#-uso)
 
@@ -29,17 +30,23 @@ Este repositorio tiene la siguiente estructura:
 La carpeta 📁`code` tiene el siguiente contenido:
 
     📁 code
-       📄 __init__.py                                           # Archivo auxiliar  
-       📄 0_download_tweets.R                                   # Código en R        
-       📄 1_PROCESSING.py                                       # Código en Python
-       📄 2_DIMENSIONALITY_REDUCTION.py                         # Código en Python
-       📄 3_1_CLUSTERING_MODELS_WITH_K_FIXED.py                 # Código en Python
-       📄 3_2_CLUSTERING_MODELS_WITH_K_OPTIMIZED.py             # Código en Python
-       📄 3_3_DBSCAN_MODELS.py                                  # Código en Python
-       📄 4_1_GET_INTERACTIVE_FIGURES.py                        # Código en Python
-       📄 4_2_GET_TFM_FIGURES.py                                # Código en Python
-       📄 functions.py                                          # Código en Python
-       📄 var_def.py                                            # Código en Python
+       📁 Python
+          📁 utils                                              # Librería
+             📄 __init__.py                                     # Archivo auxiliar
+             📄 clustering.py                                   # Útiles de clustering
+             📄 dimensionality_reduction.py                     # Útiles de reducción de dimensionalidad
+             📄 natural_language_processing.py                  # Útiles de NLP 
+          📄 __init__.py                                        # Archivo auxiliar
+          📄 1_PROCESSING.py                                    # Código para el procesado del corpus
+          📄 2_DIMENSIONALITY_REDUCTION.py                      # Código para la reducción de dimensionalidad
+          📄 3_1_CLUSTERING_MODELS_WITH_K_FIXED.py              # Código para la clasificación (Enfoque 1)
+          📄 3_2_CLUSTERING_MODELS_WITH_K_OPTIMIZED.py          # Código para la clasificación (Enfoque 2)
+          📄 3_3_DBSCAN_MODELS.py                               # Código para la clasificación (Enfoque 3)
+          📄 4_1_GET_INTERACTIVE_FIGURES.py                     # Código para la extracción de gráficas (html)
+          📄 4_2_GET_TFM_FIGURES.py                             # Código para la extracción de gráficas (png)
+          📄 var_def.py                                         # Código de configuración
+       📁 R
+          📄 0_download_tweets.R                                # Código para la descarga de datos        
 
        
 La carpeta 📁`data` tiene el siguiente contenido:
@@ -56,32 +63,36 @@ La carpeta 📁`data` tiene el siguiente contenido:
 
 Las carpetas dentro de 📁`data/processed` contienen sus respectivos 📄`README.md` detallando el contenido y el *Schema* de los datos.
 
+## 📋 Requisitos
+
+1. Asegurate de tener un entorno 🐧Linux o una alternativa para usar los scripts de Bash 📦`setup.sh` y 🚀`executions.sh` de instalación y ejecución.
+
+2. Asegúrate de tener 🐋Docker instalado para simular correctamente el entorno del repositorio. 
+
 
 ## 📦 Instalación
 
-1. Asegúrate de tener 🐋Docker instalado. Puedes descargarlo e instalarlo desde [aquí](https://www.docker.com/get-started).
-
-2. Descargate la imagen de python:
+1. Descargate la imagen de python:
     ```sh
     docker pull python:3.11.8
     ```
 
-3. Clona el repositorio:
+2. Clona el repositorio:
     ```sh
     git clone https://github.com/carlosrod17/PCA_TSNE_NLP_comparison.git
     ```
 
-4. Navega al directorio del proyecto:
+3. Navega al directorio del proyecto:
     ```sh
     cd PCA_TSNE_NLP_comparison
     ```
 
-5. Crea un contenedor de 🐋Docker:
+4. Crea un contenedor de 🐋Docker:
     ```sh
     docker run --name PCA_TSNE_container -v PCA_TSNE_NLP_comparison:/opt/shared -p 8890:0001 -it python:3.11.8
     ```
 
-6. Instala las dependencias:
+5. Instala las dependencias:
     ```sh
     ./setup.sh
     ```
