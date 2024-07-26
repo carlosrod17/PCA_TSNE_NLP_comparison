@@ -65,34 +65,34 @@ Las carpetas dentro de 📁`data/processed` contienen sus respectivos 📄`READM
 
 ## 📋 Requisitos
 
-1. Asegurate de tener un entorno 🐧Linux o una alternativa para usar los scripts de Bash 📦`setup.sh` y 🚀`executions.sh` de instalación y ejecución.
+1. Tener instalado un entorno 🐧Linux o una alternativa para usar los scripts de Bash 📦`setup.sh` y 🚀`executions.sh` de instalación y ejecución.
 
-2. Asegúrate de tener 🐋Docker instalado para simular correctamente el entorno del repositorio. 
+2. Tener instalado 🐋Docker para simular correctamente el entorno del repositorio. 
 
 
 ## 📦 Instalación
 
-1. Descargate la imagen de python:
+1. Descargar la imagen de python:
     ```sh
     docker pull python:3.11.8
     ```
 
-2. Clona el repositorio:
+2. Clonar el repositorio:
     ```sh
     git clone https://github.com/carlosrod17/PCA_TSNE_NLP_comparison.git
     ```
 
-3. Navega al directorio del proyecto:
+3. Navegar al directorio del proyecto:
     ```sh
     cd PCA_TSNE_NLP_comparison
     ```
 
-4. Crea un contenedor de 🐋Docker:
+4. Crear un contenedor de 🐋Docker:
     ```sh
     docker run --name PCA_TSNE_container -v PCA_TSNE_NLP_comparison:/opt/shared -p 8890:0001 -it python:3.11.8
     ```
 
-5. Instala las dependencias:
+5. Instalar las dependencias:
     ```sh
     ./setup.sh
     ```
