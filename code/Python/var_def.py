@@ -5,8 +5,8 @@ import pandas as pd
 
 TFM_PATH = "/opt/shared"
 AUXILIAR_DATA_PATH = os.path.join(TFM_PATH, "data", "auxiliar")
-FIGURES_PATH = os.path.join(TFM_PATH, "data", "figures")
-TFM_FIGURES_PATH = os.path.join(TFM_PATH, "data", "figures_tfm")
+INTERACTIVE_FIGURES_PATH = os.path.join(TFM_PATH, "data", "figures", "HTML")
+TFM_FIGURES_PATH = os.path.join(TFM_PATH, "data", "figures", "PNG")
 BBDD_PATH_1 = os.path.join(TFM_PATH, "data", "processed", "1_TWEETS_RAW_BY_CLUSTER")
 BBDD_PATH_2 = os.path.join(TFM_PATH, "data", "processed", "2_TWEETS_PROCESSED")
 BBDD_PATH_3 = os.path.join(TFM_PATH, "data", "processed", "3_TWEETS_EMBEDDED")
