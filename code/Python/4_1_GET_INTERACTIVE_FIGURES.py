@@ -9,7 +9,7 @@ from sklearn.metrics import confusion_matrix
 
 from var_def import BBDD_PATH_3
 from var_def import BBDD_PATH_4
-from var_def import FIGURES_PATH
+from var_def import INTERACTIVE_FIGURES_PATH
 from var_def import delimiter
 from var_def import n_clusters
 from var_def import my_palette
@@ -46,26 +46,35 @@ scatterplot2 = (
         custom_data = ["LIST_2", "CLUSTER_REAL"] + [f"top_word_{i}" for i in range(1,6)]
     )
     .update_layout(
-        width = 1000,
-        height = 400,
-        margin = dict(t = 60, b = 60, l = 20, r = 20),
-        title = dict(text = "<b>Tweets in embedded spaces by CLUSTER_REAL</b>", x = 0.5, font = dict(size = 12)),
-        legend = dict(title_text = "", orientation = "h", yanchor = "bottom", xanchor = "center", x = 0.5, y = -0.3, font = dict(size = 10)),
-        xaxis = dict(title = dict(text = "PCA", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-        xaxis2 = dict(title = dict(text = "TSNE", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-        xaxis3 = dict(title = dict(text = "PCA_TSNE", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-        yaxis = dict(title = dict(text = "", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-        yaxis2 = dict(title = dict(text = "", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-        yaxis3 = dict(title = dict(text = "", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-
+        title = {
+            "text": "<b>Tweets in embedded spaces by CLUSTER_REAL</b>",
+            "x": 0.5
+        },
+        legend = {
+            "y": 0.5
+        }
     )
     .for_each_annotation(lambda a: a.update(text=a.text.split("=")[1]))
+    .update_traces(
+        hovertemplate = "<br>".join(
+            [
+                "(<b>%{x:7.5f}</b>, <b>%{y:7.5f}</b>)",
+                "",
+                "<b>Tweet:</b>",
+                "%{customdata[0]}",
+                "",
+                "Most frequent words in cluster <b>%{customdata[1]}</b>:",
+                "   - %{customdata[2]}",
+                "   - %{customdata[3]}",
+                "   - %{customdata[4]}",
+                "   - %{customdata[5]}",
+                "   - %{customdata[6]}"
+            ]
+        )
+    )
 )
 
-for annotation in scatterplot2.layout.annotations:
-    annotation['text'] = ''
-
-scatterplot2.write_html(os.path.join(FIGURES_PATH, "2_scatterplot.html"))
+scatterplot2.write_html(os.path.join(INTERACTIVE_FIGURES_PATH, "2_scatterplot.html"))
 
 #####
 
@@ -88,19 +97,22 @@ silhouette31 = (
         color = "C_model",
         color_discrete_map = clustering_colors,
         barmode = "group",
-    )
-    .update_layout(
-        width = 800,
-        height = 600,
-        margin = dict(t = 50, b = 80, l = 80, r = 50),
-        title = dict(text = "<b>Silhouette coefficients for K-fixed classifications</b>", x = 0.5, font = dict(size = 12)),
-        legend = dict(title_text = "", orientation = "h", yanchor = "bottom", xanchor = "center", x = 0.495, y = -0.2, font = dict(size = 10)),
-        xaxis = dict(title = dict(text = "Dimensionality Reduction model", font = dict(size = 10)), tickfont = dict(size = 10)),
-        yaxis = dict(title = dict(text = "Silhouette coefficient", font = dict(size = 10)), tickfont = dict(size = 7), range = [0,1])
+        labels = {"C_model": "Clustering algorithm"}
+    ).update_layout(
+        title = {
+            "text": "<b>Silhouette coefficients for K-fixed classifications</b>",
+            "x": 0.5,
+        },
+        legend = {
+            "y": 0.5
+        },
+        xaxis_title = "Dimensionality Reduction model",
+        yaxis_title = "Silhouette coefficient",
+        yaxis_range = [0,1],
     )
 )
 
-silhouette31.write_html(os.path.join(FIGURES_PATH, "3_1_silhouette.html"))
+silhouette31.write_html(os.path.join(INTERACTIVE_FIGURES_PATH, "3_1_silhouette.html"))
 
 
 #####
@@ -130,38 +142,40 @@ scatterplot31 = (
         category_orders = {'CLUSTER': [str(i).zfill(2) for i in range(1,len(DF_tfidf_classification_31.CLUSTER.unique())+1)]},
         color_discrete_map = my_palette,
         opacity = 0.8,
-        facet_col = "CLUSTER_TYPE",
-        facet_row = "DR_model",
-        facet_row_spacing = 0.05
+        facet_row = "CLUSTER_TYPE",
+        facet_col = "DR_model",
+        custom_data = ["LIST_2", "CLUSTER"] + [f"top_word_{i}" for i in range(1,6)]
     )
     .update_layout(
-        width = 1000,
-        height = 350*len(DF_tfidf_classification_31["DR_model"].unique())+100,
-        margin = dict(t = 60, b = 60, l = 60, r = 90),
-        title = dict(text = "<b>Real classifications vs. k-fixed classifications</b>", x = 0.5, font = dict(size = 12)),
-        legend = dict(orientation = "v", yanchor = "middle", xanchor = "right", x = 1.08, y = 0.5, font = dict(size = 10)),
-        xaxis = dict(title = dict(text = "Real", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-        xaxis2 = dict(title = dict(text = "K-MEANS", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-        xaxis3 = dict(title = dict(text = "Real", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-        xaxis4 = dict(title = dict(text = "K-MEANS", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-        xaxis5 = dict(title = dict(text = "Real", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-        xaxis6 = dict(title = dict(text = "K-MEANS", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-        yaxis = dict(title = dict(text = "PCA_TSNE", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-        yaxis2 = dict(title = dict(text = "", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-        yaxis3 = dict(title = dict(text = "TSNE", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-        yaxis4 = dict(title = dict(text = "", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-        yaxis5 = dict(title = dict(text = "PCA", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-        yaxis6 = dict(title = dict(text = "", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-
+        title = {
+            "text": "<b>Real classifications vs. k-fixed classifications</b>",
+            "x": 0.5
+        },
+        legend = {
+            "y": 0.5
+        }
     )
     .for_each_annotation(lambda a: a.update(text=a.text.split("=")[1]))
+    .update_traces(
+        hovertemplate = "<br>".join(
+            [
+                "(<b>%{x:7.5f}</b>, <b>%{y:7.5f}</b>)",
+                "",
+                "<b>Tweet:</b>",
+                "%{customdata[0]}",
+                "",
+                "Most frequent words in cluster <b>%{customdata[1]}</b>:",
+                "   - %{customdata[2]}",
+                "   - %{customdata[3]}",
+                "   - %{customdata[4]}",
+                "   - %{customdata[5]}",
+                "   - %{customdata[6]}"
+            ]
+        )
+    )
 )
 
-for annotation in scatterplot31.layout.annotations:
-    annotation['text'] = ''
-
-scatterplot31.write_html(os.path.join(FIGURES_PATH, "3_1_scatterplot.html"))
-
+scatterplot31.write_html(os.path.join(INTERACTIVE_FIGURES_PATH, "3_1_scatterplot.html"))
 
 #####
 
@@ -245,7 +259,7 @@ confusion31.update_layout(
     yaxis3 = dict(title = dict(text = "", font = dict(size = 10)), tickfont=dict(size = 8)),
 )
 
-confusion31.write_html(os.path.join(FIGURES_PATH, "3_1_confusionmatrix.html"))
+confusion31.write_html(os.path.join(INTERACTIVE_FIGURES_PATH, "3_1_confusionmatrix.html"))
 
 
 ######
@@ -272,9 +286,6 @@ silhouette32 = (
         facet_row = "DR_model"
     )
     .update_layout(
-        width = 900,
-        height = 600,
-        margin = dict(t = 50, b = 80, l = 80, r = 50),
         title = dict(text = "<b>Silhouette coefficients for K-optimized classifications</b>", x = 0.5, font = dict(size = 12)),
         legend = dict(title_text = "", orientation = "h", yanchor = "bottom", xanchor = "center", x = 0.495, y = -0.17, font = dict(size = 10)),
         xaxis = dict(title = dict(text = "n_clusters", font = dict(size = 10)), tickfont = dict(size = 10)),
@@ -305,7 +316,7 @@ for row_index, facet_value in enumerate(DF_silhouette2.DR_model.unique()):
         col = 1
     )
 
-silhouette32.write_html(os.path.join(FIGURES_PATH, "3_2_silhouette.html"))
+silhouette32.write_html(os.path.join(INTERACTIVE_FIGURES_PATH, "3_2_silhouette.html"))
 
 
 #####
@@ -332,40 +343,44 @@ scatterplot32 = (
         x = "x",
         y = "y",
         color = "CLUSTER",
-        category_orders = {'CLUSTER': [str(i).zfill(2) for i in range(1,len(DF_tfidf_classification_32.CLUSTER.unique())+1)]},
+        category_orders={'CLUSTER': [str(i).zfill(2) for i in range(1,len(DF_tfidf_classification_32.CLUSTER.unique())+1)]},
         color_discrete_map = my_palette,
         opacity = 0.8,
-        facet_col = "CLUSTER_TYPE",
-        facet_row = "DR_model",
-        facet_row_spacing = 0.05
+        facet_row = "CLUSTER_TYPE",
+        facet_col = "DR_model",
+        custom_data = ["LIST_2", "CLUSTER"] + [f"top_word_{i}" for i in range(1,6)]
+        # hover_data = {"DR_model": False, "CLUSTER_TYPE": False, "CLUSTER": True, "TOP_WORDS": True},
     )
     .update_layout(
-        width = 1000,
-        height = 350*len(DF_tfidf_classification_32["DR_model"].unique())+100,
-        margin = dict(t = 60, b = 60, l = 60, r = 90),
-        title = dict(text = "<b>Real classifications vs. k-optimized classifications</b>", x = 0.5, font = dict(size = 12)),
-        legend = dict(orientation = "v", yanchor = "middle", xanchor = "right", x = 1.08, y = 0.5, font = dict(size = 10)),
-        xaxis = dict(title = dict(text = "Real", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-        xaxis2 = dict(title = dict(text = "K-MEANS", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-        xaxis3 = dict(title = dict(text = "Real", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-        xaxis4 = dict(title = dict(text = "K-MEANS", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-        xaxis5 = dict(title = dict(text = "Real", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-        xaxis6 = dict(title = dict(text = "K-MEANS", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-        yaxis = dict(title = dict(text = "PCA_TSNE", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-        yaxis2 = dict(title = dict(text = "", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-        yaxis3 = dict(title = dict(text = "TSNE", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-        yaxis4 = dict(title = dict(text = "", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-        yaxis5 = dict(title = dict(text = "PCA", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-        yaxis6 = dict(title = dict(text = "", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-
+        title = {
+            "text": "<b>Real classifications vs. k-optimized classifications</b>",
+            "x": 0.5
+        },
+        legend = {
+            "y": 0.5
+        }
     )
     .for_each_annotation(lambda a: a.update(text=a.text.split("=")[1]))
+    .update_traces(
+        hovertemplate = "<br>".join(
+            [
+                "(<b>%{x:7.5f}</b>, <b>%{y:7.5f}</b>)",
+                "",
+                "<b>Tweet:</b>",
+                "%{customdata[0]}",
+                "",
+                "Most frequent words in cluster <b>%{customdata[1]}</b>:",
+                "   - %{customdata[2]}",
+                "   - %{customdata[3]}",
+                "   - %{customdata[4]}",
+                "   - %{customdata[5]}",
+                "   - %{customdata[6]}"
+            ]
+        )
+    )
 )
 
-for annotation in scatterplot32.layout.annotations:
-    annotation['text'] = ''
-
-scatterplot32.write_html(os.path.join(FIGURES_PATH, "3_2_scatterplot.html"))
+scatterplot32.write_html(os.path.join(INTERACTIVE_FIGURES_PATH, "3_2_scatterplot.html"))
 
 #####
 
@@ -453,7 +468,7 @@ confusion32.update_layout(
     yaxis3 = dict(title = dict(text = "", font = dict(size = 10)), tickfont=dict(size = 8)),
 )
 
-confusion32.write_html(os.path.join(FIGURES_PATH, "3_2_confusionmatrix.html"))
+confusion32.write_html(os.path.join(INTERACTIVE_FIGURES_PATH, "3_2_confusionmatrix.html"))
 
 
 #####
@@ -480,40 +495,44 @@ scatterplot33 = (
         x = "x",
         y = "y",
         color = "CLUSTER",
-        category_orders = {'CLUSTER': [str(i).zfill(2) for i in range(1,len(DF_tfidf_classification_33.CLUSTER.unique())+1)]},
+        category_orders={'CLUSTER': [str(i).zfill(2) for i in range(1,len(DF_tfidf_classification_33.CLUSTER.unique())+1)]},
         color_discrete_map = my_palette,
         opacity = 0.8,
-        facet_col = "CLUSTER_TYPE",
-        facet_row = "DR_model",
-        facet_row_spacing = 0.05
+        facet_row = "CLUSTER_TYPE",
+        facet_col = "DR_model",
+        custom_data = ["LIST_2", "CLUSTER"] + [f"top_word_{i}" for i in range(1,6)]
+        # hover_data = {"DR_model": False, "CLUSTER_TYPE": False, "CLUSTER": True, "TOP_WORDS": True},
     )
     .update_layout(
-        width = 1000,
-        height = 350*len(DF_tfidf_classification_33["DR_model"].unique())+100,
-        margin = dict(t = 60, b = 60, l = 60, r = 90),
-        title = dict(text = "<b>Real classifications vs. DBSCAN classifications</b>", x = 0.5, font = dict(size = 12)),
-        legend = dict(orientation = "v", yanchor = "middle", xanchor = "right", x = 1.08, y = 0.5, font = dict(size = 10)),
-        xaxis = dict(title = dict(text = "Real", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-        xaxis2 = dict(title = dict(text = "K-MEANS", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-        xaxis3 = dict(title = dict(text = "Real", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-        xaxis4 = dict(title = dict(text = "K-MEANS", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-        xaxis5 = dict(title = dict(text = "Real", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-        xaxis6 = dict(title = dict(text = "K-MEANS", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-        yaxis = dict(title = dict(text = "PCA_TSNE", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-        yaxis2 = dict(title = dict(text = "", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-        yaxis3 = dict(title = dict(text = "TSNE", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-        yaxis4 = dict(title = dict(text = "", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-        yaxis5 = dict(title = dict(text = "PCA", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-        yaxis6 = dict(title = dict(text = "", font = dict(size = 10)), tickvals = [0, 0.5, 1], showticklabels=False),
-
+        title = {
+            "text": "<b>Real classifications vs. DBSCAN classifications</b>",
+            "x": 0.5
+        },
+        legend = {
+            "y": 0.5
+        }
     )
     .for_each_annotation(lambda a: a.update(text=a.text.split("=")[1]))
+    .update_traces(
+        hovertemplate = "<br>".join(
+            [
+                "(<b>%{x:7.5f}</b>, <b>%{y:7.5f}</b>)",
+                "",
+                "<b>Tweet:</b>",
+                "%{customdata[0]}",
+                "",
+                "Most frequent words in cluster <b>%{customdata[1]}</b>:",
+                "   - %{customdata[2]}",
+                "   - %{customdata[3]}",
+                "   - %{customdata[4]}",
+                "   - %{customdata[5]}",
+                "   - %{customdata[6]}"
+            ]
+        )
+    )
 )
 
-for annotation in scatterplot33.layout.annotations:
-    annotation['text'] = ''
-
-scatterplot33.write_html(os.path.join(FIGURES_PATH, "3_3_scatterplot.html"))
+scatterplot33.write_html(os.path.join(INTERACTIVE_FIGURES_PATH, "3_3_scatterplot.html"))
 
 
 #####
@@ -603,4 +622,4 @@ confusion33.update_layout(
     yaxis3 = dict(title = dict(text = "", font = dict(size = 10)), tickfont=dict(size = 8)),
 )
 
-confusion33.write_html(os.path.join(FIGURES_PATH, "3_3_confusionmatrix.html"))
+confusion33.write_html(os.path.join(INTERACTIVE_FIGURES_PATH, "3_3_confusionmatrix.html"))
