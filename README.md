@@ -31,12 +31,12 @@ La carpeta 📁`code` tiene el siguiente contenido:
 
     📁 code
        📁 Python
-          📁 utils                                              # Librería
-             📄 __init__.py                                     # Archivo auxiliar
+          📁 utils                                              
+             📄 __init__.py                                     
              📄 clustering.py                                   # Útiles de clustering
              📄 dimensionality_reduction.py                     # Útiles de reducción de dimensionalidad
              📄 natural_language_processing.py                  # Útiles de NLP 
-          📄 __init__.py                                        # Archivo auxiliar
+          📄 __init__.py                                        
           📄 1_PROCESSING.py                                    # Código para el procesado del corpus
           📄 2_DIMENSIONALITY_REDUCTION.py                      # Código para la reducción de dimensionalidad
           📄 3_1_CLUSTERING_MODELS_WITH_K_FIXED.py              # Código para la clasificación (Enfoque 1)
