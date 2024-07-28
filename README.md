@@ -54,7 +54,8 @@ La carpeta 📁`data` tiene el siguiente contenido:
     📁 data
        📁 auxiliar                                              # Contiene datos auxiliares 
        📁 figures
-       📁 figures_TFM
+          📁 HTML                                               # Gráficas interactivas
+          📁 PNG                                                # Gráficas estáticas
        📁 processed                                
           📁 1_TWEETS_RAW_BY_CLUSTER                            # Contiene los datos en crudo
           📁 2_TWEETS_PROCESSED                                 # Contiene el corpus procesado
