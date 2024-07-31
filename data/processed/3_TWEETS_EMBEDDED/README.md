@@ -1,4 +1,4 @@
-En esta carpeta se encuentra un solo fichero 📄`tfidf_embedded.csv.gz` con la información de los datos proyectados por los diferentes modelos de reducción de dimensionalidad.
+En esta carpeta se encuentra un solo fichero 📄`tfidf_embedded.csv.gz` generado mediante el código 📄`code/Python/2_DIMENSIONALITY_REDUCTION.py`. Este fichero contiene la información de los datos proyectados por los diferentes modelos de reducción de dimensionalidad.
 
 El esquema de datos de 📄`tfidf_embedded.csv.gz` es el siguiente:
 

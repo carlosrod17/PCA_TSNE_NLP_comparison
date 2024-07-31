@@ -41,7 +41,7 @@ La carpeta 📁`code` tiene el siguiente contenido:
           📄 2_DIMENSIONALITY_REDUCTION.py                      # Código para la reducción de dimensionalidad
           📄 3_1_CLUSTERING_MODELS_WITH_K_FIXED.py              # Código para la clasificación (Enfoque 1)
           📄 3_2_CLUSTERING_MODELS_WITH_K_OPTIMIZED.py          # Código para la clasificación (Enfoque 2)
-          📄 3_3_DBSCAN_MODELS.py                               # Código para la clasificación (Enfoque 3)
+          📄 3_3_CLUSTERING_MODELS_WITH_DBSCAN.py               # Código para la clasificación (Enfoque 3)
           📄 4_1_GET_INTERACTIVE_FIGURES.py                     # Código para la extracción de gráficas (html)
           📄 4_2_GET_TFM_FIGURES.py                             # Código para la extracción de gráficas (png)
           📄 var_def.py                                         # Código de configuración

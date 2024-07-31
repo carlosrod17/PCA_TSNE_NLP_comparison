@@ -1,4 +1,4 @@
-En esta carpeta se encuentran los resultados de los 3 enfoques de evaluación de los modelos.
+En esta carpeta se encuentran los resultados de los 3 enfoques de evaluación de los modelos, que se han generado con los códigos 📄`code/Python/3_1_CLUSTERING_MODELS_WITH_K_FIXED.py`, 📄`code/Python/3_2_CLUSTERING_MODELS_WITH_K_OPTIMIZED.py` y 📄`code/Python/3_3_CLUSTERING_MODELS_DBSCAN.py`.
 
 El **Enfoque 1** es el que aplica varios algoritmos de *clustering* con *k* fijado en 10 y contrasta la mejor clasificación obtenida de cada modelo con la clasificación original. Los resultados de este enfoque están en los archivos:
 
