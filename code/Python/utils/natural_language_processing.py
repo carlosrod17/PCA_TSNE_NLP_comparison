@@ -500,6 +500,7 @@ def NLP(dataframe, var_name, params):
     logging.info(f"       + There are {dataframe.shape[0]} texts left.")
     
     n_texts = dataframe.shape[0]
+
     # STEP 5: TOKEN EMBEDDING BY SIMILARITY
     
     logging.info("    Token embedding by similarity.")
@@ -518,7 +519,7 @@ def NLP(dataframe, var_name, params):
     
     n_texts = dataframe.shape[0]
     
-    # STEP 6: LEAST FREQUENCY TOKENS REMOVAL
+    # STEP 6: LEAST FREQUENT TOKENS REMOVAL
     
     logging.info("    Least frequent tokens removal with parameters:")
     logging.info(f"       - min_frequency = {params['min_frequency']}")
