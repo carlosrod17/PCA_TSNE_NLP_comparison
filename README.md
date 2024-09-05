@@ -23,9 +23,8 @@ Este repositorio tiene la siguiente estructura:
        📄 README.md                                             # Este archivo
        📦 requirements.txt                                      # Lista de las dependencias de python
        📦 setup.sh                                              # Ejecutable de instalación
-       📘 TFM_CarlosRodrigoPascual.pdf                          # Memoria del TFM
        📕 TFM_CarlosRodrigoPascual_presentacion.pdf             # Presentación del TFM
-
+       📘 TFM_CarlosRodrigoPascual.pdf                          # Memoria del TFM                  
 
 La carpeta 📁`code` tiene el siguiente contenido:
 
