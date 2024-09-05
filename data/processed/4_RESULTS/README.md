@@ -17,7 +17,11 @@ El **Enfoque 3** es el que aplica el algoritmo DBSCAN y contrasta la clasificaci
     📄 3_3_classification.csv.gz
     📄 3_3_metrics.csv
 
-A continuación se presentan los esquemas de datos de estos archivos.
+A continuación se detalla el contenido de estos archivos.
+
+Los ficheros 📄`3_*_silhouette.csv.gz` contienen el coeficiente de silueta obtenido para cada combinación de modelo de reducción de dimensionalidad y algoritmo de *clustering*.
+
+Los ficheros 📄`3_*_metrics.csv.gz` contienen información sobre el algoritmo de *clustering* escogido para cada modelo de reducción de dimensionalidad, como el coeficiente de silueta obtenido, la *accuracy*, los valores de *precision* y, si procede, el número de *clusters* obtenido.
 
 Los ficheros 📄`3_*_classification.csv.gz` tienen el mismo esquema. El esquema de datos es el siguiente:
 
@@ -105,5 +109,8 @@ Los ficheros 📄`3_*_classification.csv.gz` tienen el mismo esquema. El esquema
         },
         "required": ["separator", "columns"]
     }
+
+
+
 
 
