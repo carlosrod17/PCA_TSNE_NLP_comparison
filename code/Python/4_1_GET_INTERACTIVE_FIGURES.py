@@ -114,7 +114,6 @@ silhouette31 = (
 
 silhouette31.write_html(os.path.join(INTERACTIVE_FIGURES_PATH, "3_1_silhouette.html"))
 
-
 #####
 
 DF_tfidf_classification_31 = (
@@ -261,7 +260,6 @@ confusion31.update_layout(
 
 confusion31.write_html(os.path.join(INTERACTIVE_FIGURES_PATH, "3_1_confusionmatrix.html"))
 
-
 ######
 
 DF_silhouette2 = pd.read_csv(
@@ -318,7 +316,6 @@ for row_index, facet_value in enumerate(DF_silhouette2.DR_model.unique()):
 
 silhouette32.write_html(os.path.join(INTERACTIVE_FIGURES_PATH, "3_2_silhouette.html"))
 
-
 #####
 
 DF_tfidf_classification_32 = (
@@ -349,7 +346,6 @@ scatterplot32 = (
         facet_row = "CLUSTER_TYPE",
         facet_col = "DR_model",
         custom_data = ["LIST_2", "CLUSTER"] + [f"top_word_{i}" for i in range(1,6)]
-        # hover_data = {"DR_model": False, "CLUSTER_TYPE": False, "CLUSTER": True, "TOP_WORDS": True},
     )
     .update_layout(
         title = {
@@ -501,7 +497,6 @@ scatterplot33 = (
         facet_row = "CLUSTER_TYPE",
         facet_col = "DR_model",
         custom_data = ["LIST_2", "CLUSTER"] + [f"top_word_{i}" for i in range(1,6)]
-        # hover_data = {"DR_model": False, "CLUSTER_TYPE": False, "CLUSTER": True, "TOP_WORDS": True},
     )
     .update_layout(
         title = {
@@ -533,7 +528,6 @@ scatterplot33 = (
 )
 
 scatterplot33.write_html(os.path.join(INTERACTIVE_FIGURES_PATH, "3_3_scatterplot.html"))
-
 
 #####
 

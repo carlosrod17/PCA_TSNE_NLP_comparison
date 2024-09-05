@@ -101,7 +101,6 @@ silhouette31 = (
 
 silhouette31.write_image(os.path.join(TFM_FIGURES_PATH, "3_1_silhouette.png"))
 
-
 #####
 
 DF_tfidf_classification_31 = (
@@ -160,7 +159,6 @@ for annotation in scatterplot31.layout.annotations:
     annotation['text'] = ''
 
 scatterplot31.write_image(os.path.join(TFM_FIGURES_PATH, "3_1_scatterplot.png"))
-
 
 #####
 
@@ -246,7 +244,6 @@ confusion31.update_layout(
 
 confusion31.write_image(os.path.join(TFM_FIGURES_PATH, "3_1_confusionmatrix.png"))
 
-
 ######
 
 DF_silhouette2 = pd.read_csv(
@@ -305,7 +302,6 @@ for row_index, facet_value in enumerate(DF_silhouette2.DR_model.unique()):
     )
 
 silhouette32.write_image(os.path.join(TFM_FIGURES_PATH, "3_2_silhouette.png"))
-
 
 #####
 
@@ -453,7 +449,6 @@ confusion32.update_layout(
 )
 
 confusion32.write_image(os.path.join(TFM_FIGURES_PATH, "3_2_confusionmatrix.png"))
-
 
 #####
 
